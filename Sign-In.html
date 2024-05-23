@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/f695c8d9f7.js" crossorigin="anonymous"></script>
+
+    <style>
+        body 
+             {
+                 font-family: Arial, sans-serif;
+                 margin: 0;
+                 padding: 0;
+             }
+             header 
+             {
+                 background-color: #008080;
+                 color: #fff;
+                 padding: 10px;
+                 text-align: center;
+             }
+             nav 
+             {
+                 background-color: #4CAF50;
+                 overflow: hidden;
+             }
+             nav a 
+             {
+                 float: left;
+                 display: block;
+                 color: white;
+                 text-align: center;
+                 padding: 14px 20px;
+                 text-decoration: none;
+             }
+             nav a:hover 
+             {
+                 background-color: #ddd;
+                 color: black;
+             }
+             .container 
+             {
+                 margin: 20px;
+             }
+             .product 
+             {
+                 float: left;
+                 width: 30%;
+                 padding: 10px;
+                 box-sizing: border-box;
+                 text-align: center;
+             }
+             .product img 
+             {
+                 width: 80%;
+                 border-radius: 5px;
+             }
+             .product h2
+             {
+                 margin-top: 5px;
+             }
+             .product p
+             {
+                 margin-top: 5px;
+                 font-size: 16px;
+                 color: #888;
+             }
+         </style>
+    <title>Login Form</title>
+    <script>
+        function validateForm() {
+            var email = document.getElementById("typeEmailX").value;
+            var password = document.getElementById("typePasswordX").value;
+            if (email == "") {
+                alert("Email must be filled out");
+                return false;
+            }
+            if (password == "") {
+                alert("Password must be filled out");
+                return false;
+            }
+            // Assuming successful login, redirect to index.html and display the user's name
+            var user = email.split("@")[0]; // Extract username from email
+            localStorage.setItem("user", user); // Store username in localStorage
+            window.location.href = "../index.html"; // Redirect to index.html
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Swimmer's Club</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../index.html">Swimwear Shop</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" a href="Womens.html">Womens</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" a href="Mens.html">Men's</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " a href="Kids.html">Kids</a>
+                </li>
+            </ul>
+            
+            </div> 
+            <ul class="navbar-nav">
+               <li class="nav-item">
+                   <a href="Cart.html" class="btn">
+                       <i class="fa-solid fa-cart-shopping"></i> 
+                   </a>
+               </li>
+                     <li class="nav-item">
+                 <a class="nav-link " a href="Sign-In.html">Sign-in</a>
+         </li>
+   
+                   </ul>
+        </div>	
+     </nav>
+    <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-60">
+          <div class="row d-flex justify-content-center align-items-center h-60">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+      
+                  <div class="mb-md-5 mt-md-4 pb-5">
+      
+                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                    <p class="text-white-50 mb-5">Please enter your login and password!</p>
+      
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="email" id="typeEmailX" class="form-control form-control-md" />
+                      <label class="form-label" for="typeEmailX">Email</label>
+                    </div>
+      
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="password" id="typePasswordX" class="form-control form-control-md" />
+                      <label class="form-label" for="typePasswordX">Password</label>
+                    </div>
+      
+                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
+      
+                    <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-light btn-md px-5" type="submit" onclick="return validateForm()">Login</button>
+      
+                    <div class="d-flex justify-content-center text-center mt-3 pt-1">
+                      <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                      <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                      <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                    </div>
+      
+                  </div>
+      
+                  <div>
+                    <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
+                    </p>
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>

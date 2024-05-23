@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://kit.fontawesome.com/f695c8d9f7.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #008080;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        nav {
+            background-color: #4CAF50;
+            overflow: hidden;
+        }
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            margin: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shopping Cart</h1>
+    </header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Swimwear Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Womens.html">Women's</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Mens.html">Men's</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Kids.html">Kid's</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="Cart.html" class="btn">
+                            <i class="fa-solid fa-cart-shopping"></i> 
+                        </a>                    
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sign-In.html">Sign-in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sign-up.html">Sign-up</a>
+                    </li>
+                    <li class="nav-item">
+                        <button id="logoutButton" style="display:none;" class="btn btn-danger">Logout</button>
+        
+                       </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <span id="loggedInUser" class="text-black"></span>
+        
+        <div id="cart-items" class="list-group"></div>
+        <h3>Total: ₱<span id="total">0.00</span></h3>
+        <div class="form-group">
+            <label for="amount-paid">Amount Paid:</label>
+            <input type="number" id="amount-paid" class="form-control">
+        </div>
+        <button id="calculate-change" class="btn btn-primary">Calculate Change</button>
+        <h4 id="change"></h4>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalElement = document.getElementById('total');
+            const changeElement = document.getElementById('change');
+            
+            function updateCart() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                cartItemsContainer.innerHTML = '';
+                let total = 0;
+                cart.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'cart-item';
+                    div.innerHTML = `<span>${item.product}</span><span>₱${item.price.toFixed(2)}</span>`;
+                    cartItemsContainer.appendChild(div);
+                    total += item.price;
+                });
+                totalElement.textContent = total.toFixed(2);
+            }
+
+            document.getElementById('calculate-change').addEventListener('click', () => {
+                const amountPaid = parseFloat(document.getElementById('amount-paid').value);
+                const total = parseFloat(totalElement.textContent);
+                if (!isNaN(amountPaid) && amountPaid >= total) {
+                    const change = amountPaid - total;
+                    changeElement.textContent = `Change: ₱${change.toFixed(2)}`;
+                } else {
+                    changeElement.textContent = 'Insufficient amount paid.';
+                }
+            });
+
+            updateCart();
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/f695c8d9f7.js" crossorigin="anonymous"></script>
+</body>
+</html>
+<script>
+    // Retrieve the username from localStorage
+    var user = localStorage.getItem("user");
+  if (user) {
+  document.getElementById("loggedInUser").innerText = user + "'s Cart";
+  document.getElementById("logoutButton").style.display = "block";
+  
+  var signUpLink = document.querySelector('a[href="./pages/Sign-up.html"]');
+  var signInLink = document.querySelector('a[href="./pages/Sign-In.html"]');
+  signUpLink.style.display = "none";
+  signInLink.style.display = "none";
+  
+  // Add event listener for logout button
+  document.getElementById("logoutButton").addEventListener("click", function() {
+      // Clear user data
+      localStorage.removeItem("user");
+      // Redirect to homepage or sign-in page
+      window.location.href = "./index.html";
+  });
+  }
+  </script>
